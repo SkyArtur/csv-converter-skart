@@ -100,4 +100,5 @@ csv_converter/tests/artifacts/**/*.csv
 csv_converter/tests/artifacts/**/*.xlsx
 csv_converter/tests/artifacts/debug/**
 
-
+exemplo.md
+/exemplo.md
