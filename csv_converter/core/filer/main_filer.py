@@ -24,7 +24,7 @@ class MainFiler(TemporaryFiler):
         self.file = file
         self.output = output
 
-    def detect_file_format(self):
+    def detect_suffix(self) -> Optional[str]:
         """Detect the supported format of the input file.
 
         Returns:
@@ -33,7 +33,7 @@ class MainFiler(TemporaryFiler):
         """
         suffix = self.file.suffix.lower()
         if suffix in ['.xlsx', '.xls']:
-            return 'excel'
+            return 'xlsx'
         if suffix in ['.csv', '.csv.gz']:
             return 'csv'
         return None
