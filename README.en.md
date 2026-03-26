@@ -1,11 +1,11 @@
 # csv-converter-skart 0.1.2
 
-> Command-line tool for converting and sanitizing spreadsheet files, focused on handling inconsistent data and generating CSV files with Pandas.
+Command-line tool for converting and sanitizing spreadsheet files, focused on handling inconsistent data and generating CSV files with Pandas.
 
 ## Installation
 
 ```shell
-pip install -i https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ csv-converter-skart
+pip install csv-converter-skart
 ```
 
 ## Usage
@@ -30,4 +30,4 @@ csv-converter --help
 
 ## License
 
-> MIT License - Copyright (c) 2026 Artur dos Santos Shon
+MIT License - Copyright (c) 2026 Artur dos Santos Shon

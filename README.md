@@ -1,11 +1,11 @@
 # csv-converter-skart 0.1.2
 
-> Ferramenta de linha de comando para conversão e sanitização de arquivos de planilhas, com foco no tratamento de dados inconsistentes e na geração de arquivos CSV por meio do Pandas.
+Ferramenta de linha de comando para conversão e sanitização de arquivos de planilhas, com foco no tratamento de dados inconsistentes e na geração de arquivos CSV por meio do Pandas.
 
 ## Instalação
 
 ```shell
-pip install -i https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ csv-converter-skart
+pip install csv-converter-skart
 ```
 
 ## Utilização
@@ -30,4 +30,4 @@ csv-converter --help
 
 ## Licença
 
-> MIT License - Copyright (c) 2026 Artur dos Santos Shon
+MIT License - Copyright (c) 2026 Artur dos Santos Shon
