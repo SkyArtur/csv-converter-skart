@@ -49,9 +49,9 @@ class MainFiler(TemporaryFiler):
             ValueError: If the input path is not a file.
         """
         if not self.file.exists():
-            raise FileNotFoundError(f'<class: {self.__class__.__name__}> - File [ {self.file.name} ] not found.')
+            raise FileNotFoundError(f':class: {self.__class__.__name__}.file = "{self.file.name}" >> File not found')
         if not self.file.is_file():
-            raise ValueError(f'<class: {self.__class__.__name__}> - Parameter [ {self.file.name} ] not a file.')
+            raise ValueError(f':class: {self.__class__.__name__}.file = "{self.file.name}" >> Not a valid file name')
         return self.file
 
     def validate_output_file(self) -> Path:
@@ -72,7 +72,7 @@ class MainFiler(TemporaryFiler):
             self.output = output_dir_pattern.joinpath(f'{output_pattern}.csv').resolve()
         else:
             if self.output.suffix != '.csv':
-                raise ValueError(f'<class: {self.__class__.__name__}> - Invalid output file extension - "{self.output.suffix}"')
+                raise ValueError(f':class: {self.__class__.__name__}.output = "{self.output.name}" >> Invalid output file extension "{self.output.suffix}"')
             if not self.output.parent.exists():
                 self.output.parent.mkdir(parents=True, exist_ok=True)
         return self.output
