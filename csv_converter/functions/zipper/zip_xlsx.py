@@ -19,9 +19,9 @@ def zip_xlsx(temp_dir: Path, temp_file: Path) -> None:
             directory.
     """
     if not temp_dir.exists():
-        raise FileNotFoundError(f'Temporary directory [ {temp_dir.name} ] does not exist.')
+        raise FileNotFoundError(f':func: {zip_xlsx.__name__} >> Temporary directory "{temp_dir.name}" does not exist.')
     elif not temp_dir.is_dir():
-        raise FileNotFoundError(f'Directory [ {temp_dir.name} ] is not a directory.')
+        raise FileNotFoundError(f':func: {zip_xlsx.__name__} >> Directory "{temp_dir.name}" is not a directory.')
     with zipfile.ZipFile(temp_file, 'w') as new_zip:
         for file in temp_dir.rglob('*'):
             if file.is_file():

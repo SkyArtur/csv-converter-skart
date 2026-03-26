@@ -41,7 +41,7 @@ class TemporaryFiler:
         self.temp_file.touch(exist_ok=True)
         if not self.temp_dir.exists() or not self.temp_dir_xl.exists() or not self.temp_file.exists():
             raise FileNotFoundError(
-                f'<class: {self.__class__.__name__}> - Error defining the temporary file structure.'
+                f':class: {self.__class__.__name__} >> Error defining the temporary file structure.'
             )
 
         return self

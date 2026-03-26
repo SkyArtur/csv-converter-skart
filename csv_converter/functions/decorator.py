@@ -33,6 +33,6 @@ def exception_handling(func: Callable) -> Callable:
         """
         try:
             return func(*args, **kwargs)
-        except (PermissionError, FileNotFoundError, zipfile.BadZipFile, TypeError, AttributeError, KeyError) as error:
-            raise ValueError(f'<func: {func.__name__}> has raised an error.\n{error}')
+        except (PermissionError, FileNotFoundError, zipfile.BadZipFile, TypeError, AttributeError, KeyError):
+            raise
     return wrapper

@@ -19,7 +19,7 @@ def unzip_xlsx(file: Path, temp_dir: Path) -> None:
             cannot be opened by the wrapped decorator.
     """
     if not file.exists() or not file.is_file():
-        raise FileNotFoundError(f'File [ {file.name} ] not found.')
+        raise FileNotFoundError(f':func: {unzip_xlsx.__name__} >> File "{file.name}" not found.')
     with zipfile.ZipFile(file) as zip_ref:
         zip_ref.extractall(temp_dir)
     return None
