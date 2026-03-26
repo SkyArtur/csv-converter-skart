@@ -12,6 +12,11 @@ def sanitize_spreadsheets(temp_dir: Path) -> Path:
 
     Returns:
         Path: The same directory path received after sanitization completes.
+
+    Raises:
+        FileNotFoundError: If any matched XML file is removed before reading.
+        PermissionError: If an XML file cannot be read or rewritten.
+        TypeError: If ``sanitize_xml`` receives invalid content.
     """
     for xml_file in temp_dir.glob('**/*.xml'):
         with xml_file.open('r', encoding='utf-8') as file_xml:
