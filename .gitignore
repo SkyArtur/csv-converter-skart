@@ -87,21 +87,25 @@ venv.bak/
 .idea/
 
 # My files
-
-exemplos.py
+/exemplo.md
+/exemplos.py
 **/.pypirc
 
 # Generated data files
 *.csv
 *.xlsx
-!csv_converter/tests/artifacts/
-!csv_converter/tests/artifacts/debug/
+
+# Exceções — fixtures de teste devem ser versionados
+!csv_converter/tests/fixtures/
+!csv_converter/tests/fixtures/input_files/
+!csv_converter/tests/fixtures/input_files/*.xlsx
+!csv_converter/tests/fixtures/input_files/*.csv
+!csv_converter/tests/fixtures/expected_files/
+!csv_converter/tests/fixtures/expected_files/*.csv
+
+# Artefatos gerados pelos testes não são versionados
 csv_converter/tests/artifacts/**/*.csv
 csv_converter/tests/artifacts/**/*.xlsx
 csv_converter/tests/artifacts/debug/**
 
-exemplo.md
 /exemplo.md
-
-/exemplos.py
-
