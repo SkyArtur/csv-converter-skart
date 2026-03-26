@@ -104,12 +104,12 @@ class DatafileConverter:
             with MainFiler(file=self.__file, output=self.__output) as filer:
                 filer.validate_input_file()
                 filer.validate_output_file()
-                type_file = filer.detect_file_format()
+                type_file = filer.detect_suffix()
                 if type_file == 'csv':
                     detection = detect_encoding(filer.file)
                     encoding = self.check_confidence_csv(detection, filer)
                     self.save_new_normalized_csv(filer.file, filer.output, encoding)
-                elif type_file == 'excel':
+                elif type_file == 'xlsx':
                     unzip_xlsx(filer.file, filer.temp_dir)
                     sanitize_spreadsheets(filer.temp_dir)
                     zip_xlsx(filer.temp_dir, filer.temp_file)
