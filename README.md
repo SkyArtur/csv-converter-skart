@@ -1,4 +1,4 @@
-# csv-converter-skart 0.1.2
+# [csv-converter-skart 0.1.2](https://pypi.org/project/csv-converter-skart/)
 
 Ferramenta de linha de comando para conversão e sanitização de arquivos de planilhas, com foco no tratamento de dados inconsistentes e na geração de arquivos CSV por meio do Pandas.
 
