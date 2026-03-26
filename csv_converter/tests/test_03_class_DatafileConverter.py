@@ -95,7 +95,10 @@ def test_generate_file_csv_with_output_file(original_excel, debug_output_csv):
     assert debug_output_csv.exists() == True
     debug_output_csv.unlink()
 
-@pytest.mark.parametrize("user_input, expected_exit_code", [('y\n', 0), ('n\n', 1)])
+@pytest.mark.parametrize("user_input, expected_exit_code", [
+    pytest.param('y\n', 0, id='user_confirms'),
+    pytest.param('n\n', 1, id='user_aborts')
+])
 def test_normalize_file_csv(original_csv, debug_output_csv, user_input, expected_exit_code):
     """Validate CSV normalization flow for interactive confidence prompts.
 
