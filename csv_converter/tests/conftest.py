@@ -187,7 +187,7 @@ def not_file(input_files_dir: Path) -> Path:
     Returns:
         Path: Path that is expected to be invalid as a regular file input.
     """
-    return input_files_dir / 'not_file'
+    return input_files_dir
 
 @pytest.fixture
 def error_file(input_files_dir: Path) -> Path:
