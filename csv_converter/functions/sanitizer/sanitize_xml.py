@@ -12,6 +12,9 @@ def sanitize_xml(xml: str) -> str:
     Returns:
         str: Sanitized XML content with normalized values, escaped
             ampersands, and invalid control characters removed.
+
+    Raises:
+        TypeError: If ``xml`` is not a string.
     """
     xml = re.sub(r"(<(?:\w+:)?[vt]>)\s*-\s*(</(?:\w+:)?[vt]>)", r"\g<1>0\g<2>", xml)
     xml = re.sub(r"&(?!(amp|lt|gt|quot|apos);)", "&amp;", xml)

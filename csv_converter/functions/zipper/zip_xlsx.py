@@ -3,10 +3,10 @@
 import zipfile
 from pathlib import Path
 
-from .zippers_decorator import zippers_decorator
+from csv_converter.functions.decorator import exception_handling
 
 
-@zippers_decorator
+@exception_handling
 def zip_xlsx(temp_dir: Path, temp_file: Path) -> None:
     """Compress a temporary directory into an XLSX archive.
 

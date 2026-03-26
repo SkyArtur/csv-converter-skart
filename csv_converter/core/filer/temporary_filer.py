@@ -1,4 +1,4 @@
-"""Temporary workspace management for intermediate spreadsheet processing."""
+"""Temporary workspace utilities for intermediate spreadsheet processing."""
 
 import shutil, tempfile, logging
 from typing import Optional
@@ -7,7 +7,7 @@ from pathlib import Path
 logger = logging.getLogger(__name__)
 
 class TemporaryFiler:
-    """Provide a temporary workspace for intermediate XLSX processing."""
+    """Manage temporary directories and files used during XLSX processing."""
 
     def __init__(self, **kwargs):
         """Initialize the temporary workspace state.

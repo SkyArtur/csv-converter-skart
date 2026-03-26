@@ -1,4 +1,4 @@
-"""File management helpers for input validation and CSV output generation."""
+"""File management helpers for validation and CSV output generation."""
 
 import logging, pandas as pd
 from typing import Optional
@@ -63,6 +63,7 @@ class MainFiler(TemporaryFiler):
         Raises:
             ValueError: If the provided output path does not use the ``.csv``
                 extension.
+            PermissionError: If the output directory cannot be created.
         """
         output_pattern = self.file.stem
         output_dir_pattern = Path.cwd().joinpath(f'File{output_pattern.title()}Normalized').resolve()

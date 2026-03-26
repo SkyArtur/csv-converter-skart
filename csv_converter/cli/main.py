@@ -4,7 +4,6 @@ This module exposes the main CLI command used to convert supported tabular
 data files into sanitized output files suitable for CSV-based workflows.
 """
 
-# csv_converter/cli/main.py
 import click, logging
 from pathlib import Path
 

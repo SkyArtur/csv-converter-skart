@@ -16,7 +16,13 @@ authors = [
 dependencies = [
     "pandas~=3.0",
     "openpyxl~=3.1",
-    "click~=8.3"
+    "click~=8.3",
+    "chardet~=7.3"
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest~=9.0",
 ]
 
 [tool.setuptools.packages.find]
