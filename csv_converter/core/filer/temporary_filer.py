@@ -1,4 +1,4 @@
-"""Temporary workspace utilities for intermediate spreadsheet processing."""
+"""Temporary workspace helpers for spreadsheet conversion."""
 
 import shutil, tempfile, logging
 from typing import Optional
@@ -7,14 +7,13 @@ from pathlib import Path
 logger = logging.getLogger(__name__)
 
 class TemporaryFiler:
-    """Manage temporary directories and files used during XLSX processing."""
+    """Manage temporary resources used during spreadsheet processing."""
 
     def __init__(self, **kwargs):
-        """Initialize the temporary workspace state.
+        """Initialize temporary workspace attributes.
 
         Args:
-            **kwargs: Additional keyword arguments forwarded to the parent
-                class.
+            **kwargs: Extra keyword arguments forwarded to ``super()``.
         """
         super().__init__(**kwargs)
         self.__temporary_directory: Optional[Path] = None
@@ -23,14 +22,13 @@ class TemporaryFiler:
         self.temp_dir_xl: Optional[Path] = None
 
     def __enter__(self):
-        """Create and validate the temporary file structure.
+        """Create the temporary directory structure.
 
         Returns:
-            TemporaryFiler: Current instance configured with temporary paths.
+            TemporaryFiler: Current instance with initialized temporary paths.
 
         Raises:
-            FileNotFoundError: If the temporary directory or file cannot be
-                created correctly.
+            FileNotFoundError: If any required temporary path is not created.
         """
         self.__temporary_directory = Path(tempfile.mkdtemp()).resolve()
         self.temp_dir = self.__temporary_directory.joinpath('temp_spst').resolve()
@@ -47,15 +45,15 @@ class TemporaryFiler:
         return self
 
     def __exit__(self, exc_type, exc_val, exc_tb):
-        """Clean up temporary resources when leaving the context manager.
+        """Remove temporary resources when leaving the context.
 
         Args:
             exc_type: Exception type raised inside the context, if any.
             exc_val: Exception instance raised inside the context, if any.
-            exc_tb: Traceback associated with the exception, if any.
+            exc_tb: Traceback raised inside the context, if any.
 
         Returns:
-            bool: ``False`` to propagate any exception raised in the context.
+            bool: ``False`` to propagate exceptions.
         """
         shutil.rmtree(self.__temporary_directory, ignore_errors=True)
         return False

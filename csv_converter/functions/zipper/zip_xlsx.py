@@ -1,4 +1,4 @@
-"""Helpers for packaging extracted XLSX contents into a ZIP archive."""
+"""Helpers for packaging extracted spreadsheet contents as XLSX."""
 
 import zipfile
 from pathlib import Path
@@ -8,11 +8,11 @@ from csv_converter.functions.decorator import exception_handling
 
 @exception_handling
 def zip_xlsx(temp_dir: Path, temp_file: Path) -> None:
-    """Compress a temporary directory into an XLSX archive.
+    """Compress a temporary directory into an XLSX-compatible archive.
 
     Args:
         temp_dir: Directory containing the extracted XLSX structure.
-        temp_file: Target file path for the generated ZIP-based XLSX archive.
+        temp_file: Target path for the generated archive file.
 
     Raises:
         FileNotFoundError: If ``temp_dir`` does not exist or is not a

@@ -1,20 +1,20 @@
-"""Utilities for normalizing spreadsheet XML content."""
+"""Helpers for sanitizing spreadsheet XML content."""
 
 import re
 
 
 def sanitize_xml(xml: str) -> str:
-    """Normalize invalid values and characters in spreadsheet XML.
+    """Sanitize spreadsheet XML content.
 
     Args:
         xml: Raw XML content to sanitize.
 
     Returns:
-        str: Sanitized XML content with normalized values, escaped
+        str: Sanitized XML content with placeholder numeric values, escaped
             ampersands, and invalid control characters removed.
 
     Raises:
-        TypeError: If ``xml`` is not a string.
+        TypeError: If ``xml`` is not a string value accepted by ``re.sub()``.
     """
     xml = re.sub(r"(<(?:\w+:)?[vt]>)\s*-\s*(</(?:\w+:)?[vt]>)", r"\g<1>0\g<2>", xml)
     xml = re.sub(r"&(?!(amp|lt|gt|quot|apos);)", "&amp;", xml)

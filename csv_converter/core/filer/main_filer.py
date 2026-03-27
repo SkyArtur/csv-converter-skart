@@ -1,4 +1,4 @@
-"""File management helpers for validation and CSV output generation."""
+"""File management helpers for input validation and output generation."""
 
 import logging, pandas as pd
 from typing import Optional
@@ -9,27 +9,26 @@ from .temporary_filer import TemporaryFiler
 logger = logging.getLogger(__name__)
 
 class MainFiler(TemporaryFiler):
-    """Manage source files, output paths, and temporary conversion state."""
+    """Manage input files, output paths, and temporary conversion state."""
 
     def __init__(self, file: Path , output: Optional[Path] = None, **kwargs):
-        """Initialize the filer with input and optional output paths.
+        """Initialize the file manager.
 
         Args:
             file: Source file to process.
             output: Optional destination path for the generated CSV file.
-            **kwargs: Additional keyword arguments forwarded to the parent
-                class.
+            **kwargs: Extra keyword arguments forwarded to ``super()``.
         """
         super().__init__(**kwargs)
         self.file = file
         self.output = output
 
     def detect_suffix(self) -> Optional[str]:
-        """Detect the supported format of the input file.
+        """Detect the supported type of the input file.
 
         Returns:
-            Optional[str]: ``"excel"`` for Excel files, ``"csv"`` for CSV
-            files, or ``None`` when the extension is unsupported.
+            Optional[str]: ``"xlsx"`` for Excel files, ``"csv"`` for CSV
+                files, or ``None`` for unsupported extensions.
         """
         suffix = self.file.suffix.lower()
         if suffix in ['.xlsx', '.xls']:
@@ -39,7 +38,7 @@ class MainFiler(TemporaryFiler):
         return None
 
     def validate_input_file(self) -> Path:
-        """Validate that the input path exists and points to a file.
+        """Validate the input file path.
 
         Returns:
             Path: Validated input file path.
@@ -55,7 +54,7 @@ class MainFiler(TemporaryFiler):
         return self.file
 
     def validate_output_file(self) -> Path:
-        """Validate or create the output path used for the generated CSV.
+        """Validate or create the output file path.
 
         Returns:
             Path: Resolved output CSV path.

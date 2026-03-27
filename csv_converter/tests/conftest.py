@@ -19,7 +19,7 @@ def root_tests() -> Path:
 
 @pytest.fixture
 def temporary_system_path():
-    """Return the operating system temporary directory.
+    """Return the system temporary directory path.
 
     Returns:
         Path: System temporary directory path.
@@ -28,16 +28,16 @@ def temporary_system_path():
 
 @pytest.fixture
 def engines_csv():
-    """Return the CSV parser engines used by the test suite.
+    """Return the CSV parser engine names used by the tests.
 
     Returns:
-        dict[str, str]: Mapping of parser engine names to themselves.
+        dict[str, str]: Mapping of engine names to themselves.
     """
     return {e: e for e in ['c', 'python', 'pyarrow', 'python-fwf']}
 
 @pytest.fixture
 def artifacts_dir(root_tests) -> Path:
-    """Return the directory used for test artifacts.
+    """Return the directory used for generated test artifacts.
 
     Args:
         root_tests: Root directory of the test package.
@@ -49,7 +49,7 @@ def artifacts_dir(root_tests) -> Path:
 
 @pytest.fixture
 def fixtures_dir(root_tests: Path) -> Path:
-    """Return the directory that stores test fixtures.
+    """Return the directory that stores static test fixtures.
 
     Args:
         root_tests: Root directory of the test package.
@@ -97,7 +97,7 @@ def expected_files_dir(fixtures_dir) -> Path:
 
 @pytest.fixture
 def debug_temp_dir(debug_dir: Path) -> Generator[Path, None, None]:
-    """Provide a reusable temporary debug directory.
+    """Provide a reusable temporary directory for debug artifacts.
 
     Args:
         debug_dir: Directory used for debug artifacts.
@@ -119,7 +119,7 @@ def debug_temp_dir(debug_dir: Path) -> Generator[Path, None, None]:
 
 @pytest.fixture
 def debug_temp_file(debug_temp_dir: Path) -> Path:
-    """Return the temporary XLSX file path used in debug tests.
+    """Return the temporary XLSX path used in debug tests.
 
     Args:
         debug_temp_dir: Temporary debug directory used by zipper tests.
@@ -143,7 +143,7 @@ def debug_output_csv(debug_dir) -> Path:
 
 @pytest.fixture
 def original_excel(input_files_dir: Path) -> Path:
-    """Return the sample XLSX input file path.
+    """Return the valid XLSX fixture path.
 
     Args:
         input_files_dir: Directory that stores input fixture files.
@@ -155,7 +155,7 @@ def original_excel(input_files_dir: Path) -> Path:
 
 @pytest.fixture
 def original_csv(input_files_dir: Path) -> Path:
-    """Return the sample CSV input file path.
+    """Return the valid CSV fixture path.
 
     Args:
         input_files_dir: Directory that stores input fixture files.
@@ -179,7 +179,7 @@ def normalized_csv(expected_files_dir: Path) -> Path:
 
 @pytest.fixture
 def not_file(input_files_dir: Path) -> Path:
-    """Return a path that does not point to a valid file.
+    """Return a path that is invalid as a file input.
 
     Args:
         input_files_dir: Directory that stores input fixture files.

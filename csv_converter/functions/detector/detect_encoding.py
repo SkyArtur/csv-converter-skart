@@ -1,18 +1,18 @@
-"""Functions for detecting the text encoding of CSV-like files."""
+"""Helpers for detecting file text encoding."""
 
 import chardet
 from pathlib import Path
 
 
 def detect_encoding(file: Path) -> dict[str, str]:
-    """Detect the most likely encoding for a file.
+    """Detect the most likely text encoding for a file.
 
     Args:
-        file: File whose raw bytes will be analyzed.
+        file: File path whose raw bytes will be analyzed.
 
     Returns:
-        dict[str, str]: Detection metadata returned by ``chardet``, including
-        the encoding name and confidence value.
+        dict[str, str]: Mapping returned by ``chardet.detect()`` with the
+            detected encoding metadata.
 
     Raises:
         FileNotFoundError: If ``file`` does not exist.

@@ -7,7 +7,7 @@ from csv_converter.core import MainFiler
 
 
 def test_invalid_input_file(not_file: Path) -> None:
-    """Validate that a non-existent input path is rejected.
+    """Verify that ``validate_input_file()`` rejects an invalid file path.
 
     Args:
         not_file: Path that does not point to a valid file.
@@ -17,7 +17,7 @@ def test_invalid_input_file(not_file: Path) -> None:
             invalid_filer.validate_input_file()
 
 def test_invalid_output_file(original_excel: Path, error_file: Path) -> None:
-    """Validate that an invalid output path is rejected.
+    """Verify that ``validate_output_file()`` rejects an invalid output path.
 
     Args:
         original_excel: Valid input spreadsheet used to build the filer.
@@ -28,7 +28,7 @@ def test_invalid_output_file(original_excel: Path, error_file: Path) -> None:
             invalid_filer.validate_output_file()
 
 def test_creation_default_destination_directory(original_excel: Path) -> None:
-    """Validate creation of the default output directory.
+    """Verify creation of the default output directory.
 
     Args:
         original_excel: Valid input spreadsheet used to build the filer.
@@ -40,7 +40,7 @@ def test_creation_default_destination_directory(original_excel: Path) -> None:
         shutil.rmtree(filer.output.parent.name)
 
 def test_define_temporary_structure(original_excel:Path, temporary_system_path: Path) -> None:
-    """Validate the temporary directory and file structure lifecycle.
+    """Verify the temporary directory structure created by ``MainFiler``.
 
     Args:
         original_excel: Valid input spreadsheet used to build the filer.

@@ -7,7 +7,7 @@ from csv_converter.functions import zip_xlsx, unzip_xlsx
 
 
 def test_unzip_xlsx(debug_temp_dir: Path, original_excel: Path) -> None:
-    """Validate extraction of an XLSX archive into the target directory.
+    """Verify that ``unzip_xlsx()`` extracts an XLSX file into the target directory.
 
     Args:
         debug_temp_dir: Temporary directory used for extracted files.
@@ -22,7 +22,7 @@ def test_unzip_xlsx(debug_temp_dir: Path, original_excel: Path) -> None:
         assert file.exists() == True
 
 def test_zip_xlsx(debug_temp_dir: Path, debug_temp_file: Path) -> None:
-    """Validate compression of a directory into a temporary XLSX file.
+    """Verify that ``zip_xlsx()`` creates an XLSX file from a directory.
 
     Args:
         debug_temp_dir: Directory used as compression source.
@@ -34,7 +34,7 @@ def test_zip_xlsx(debug_temp_dir: Path, debug_temp_file: Path) -> None:
     assert temp_file.exists() == True
 
 def test_unzip_xlsx_extract_xml_structure(original_excel):
-    """Validate that extraction materializes the XML workbook structure.
+    """Verify that extracted XLSX content contains XML files.
 
     Args:
         original_excel: Valid XLSX file used as extraction source.
@@ -45,7 +45,7 @@ def test_unzip_xlsx_extract_xml_structure(original_excel):
             assert element.exists()
 
 def test_zip_xlsx_create_temporary_xlsx(original_excel):
-    """Validate that compression creates the expected temporary XLSX file.
+    """Verify that ``zip_xlsx()`` creates the temporary XLSX path.
 
     Args:
         original_excel: Valid XLSX file used to build the filer structure.
@@ -56,7 +56,7 @@ def test_zip_xlsx_create_temporary_xlsx(original_excel):
             assert element.resolve() == filer.temp_file
 
 def test_unzip_xlsx_raised_value_error_because_file_not_fund(not_file, error_file):
-    """Validate that extraction rejects a missing source file.
+    """Verify that ``unzip_xlsx()`` rejects an invalid source path.
 
     Args:
         not_file: Path that does not point to a valid file.
@@ -64,16 +64,16 @@ def test_unzip_xlsx_raised_value_error_because_file_not_fund(not_file, error_fil
     """
     file = not_file
     temp_dir = error_file
-    with pytest.raises(ValueError) as err:
+    with pytest.raises(FileNotFoundError) as err:
         unzip_xlsx(file, temp_dir)
 
 def test_zip_xlsx_raised_value_error_because_not_a_dir(error_file):
-    """Validate that compression rejects a non-directory source path.
+    """Verify that ``zip_xlsx()`` rejects a source path that is not a directory.
 
     Args:
         error_file: Path reused as both invalid source and output target.
     """
     temp_dir = error_file
     temp_file = error_file
-    with pytest.raises(ValueError):
+    with pytest.raises(FileNotFoundError):
         zip_xlsx(temp_dir, temp_file)

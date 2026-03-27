@@ -1,4 +1,5 @@
 """Tests for the ``DatafileConverter`` conversion workflow."""
+import zipfile
 
 import pytest, logging, shutil, click
 from click.testing import CliRunner
@@ -7,7 +8,7 @@ from csv_converter.core import DatafileConverter
 
 
 def test_raised_exception_not_zipped_file(error_file: Path, default_output_error, caplog):
-    """Validate logging and failure for a non-zip XLSX input.
+    """Verify failure and logging for an invalid XLSX input.
 
     Args:
         error_file: Invalid XLSX file that cannot be treated as a zip archive.
@@ -21,14 +22,15 @@ def test_raised_exception_not_zipped_file(error_file: Path, default_output_error
             directory.
     """
     with caplog.at_level(logging.ERROR):
-        with pytest.raises(ValueError):
+        with pytest.raises(zipfile.BadZipFile):
             DatafileConverter(error_file).process()
-    assert default_output_error.exists() == True
     assert 'File is not a zip file' in caplog.text
+    assert 'BadZipFile' in caplog.text
+    assert default_output_error.exists() == True
     shutil.rmtree(default_output_error)
 
 def test_raised_exception_invalid_output_file(original_excel: Path, error_file: Path, caplog):
-    """Validate logging and failure for an invalid output extension.
+    """Verify failure and logging for an invalid output extension.
 
     Args:
         original_excel: Valid XLSX file used as input.
@@ -39,13 +41,13 @@ def test_raised_exception_invalid_output_file(original_excel: Path, error_file: 
         AssertionError: If the converter does not reject the output path or
             does not log the expected message.
     """
-    with caplog.at_level(logging.ERROR):
+    with caplog.at_level(logging.INFO):
         with pytest.raises(ValueError):
             DatafileConverter(original_excel, error_file).process()
-    assert 'Invalid output file extension - ".xlsx"' in caplog.text
+    assert 'Invalid output file extension ".xlsx"' in caplog.text
 
 def test_raised_exception_when_an(not_file, caplog):
-    """Validate logging and failure for a missing input file.
+    """Verify failure and logging for an invalid input path.
 
     Args:
         not_file: Path that does not point to a valid file.
@@ -58,14 +60,13 @@ def test_raised_exception_when_an(not_file, caplog):
     with caplog.at_level(logging.ERROR):
         with pytest.raises(ValueError):
             DatafileConverter(not_file).process()
-    assert f'Parameter [ {not_file.name} ] not a file.' in caplog.text
+    assert 'Not a valid file name' in caplog.text
 
-def test_generate_file_csv_without_output_file(original_excel, debug_output_csv, default_output_dir):
-    """Validate CSV generation in the default output directory.
+def test_generate_file_csv_without_output_file(original_excel, default_output_dir):
+    """Verify CSV generation in the default output directory.
 
     Args:
         original_excel: Valid XLSX file used as input.
-        debug_output_csv: Debug CSV path fixture kept for test composition.
         default_output_dir: Default output directory derived from the input
             fixture.
 
@@ -75,12 +76,13 @@ def test_generate_file_csv_without_output_file(original_excel, debug_output_csv,
     """
     converter = DatafileConverter(original_excel)
     converter.process()
-    assert default_output_dir.exists() == True
-    assert default_output_dir.joinpath(f'{original_excel.stem}.csv').exists() == True
+    assert converter.output.exists() == True
+    assert converter.output.parent == default_output_dir
+    assert converter.output.name == f'{original_excel.stem}.csv'
     shutil.rmtree(default_output_dir)
 
 def test_generate_file_csv_with_output_file(original_excel, debug_output_csv):
-    """Validate CSV generation at an explicit output path.
+    """Verify CSV generation at an explicit output path.
 
     Args:
         original_excel: Valid XLSX file used as input.
@@ -92,7 +94,8 @@ def test_generate_file_csv_with_output_file(original_excel, debug_output_csv):
     """
     converter = DatafileConverter(original_excel, debug_output_csv)
     converter.process()
-    assert debug_output_csv.exists() == True
+    assert converter.output.exists() == True
+    assert converter.output == debug_output_csv
     debug_output_csv.unlink()
 
 @pytest.mark.parametrize("user_input, expected_exit_code", [
@@ -100,7 +103,7 @@ def test_generate_file_csv_with_output_file(original_excel, debug_output_csv):
     pytest.param('n\n', 1, id='user_aborts')
 ])
 def test_normalize_file_csv(original_csv, debug_output_csv, user_input, expected_exit_code):
-    """Validate CSV normalization flow for interactive confidence prompts.
+    """Verify CSV normalization with interactive confidence prompts.
 
     Args:
         original_csv: CSV fixture used as converter input.
