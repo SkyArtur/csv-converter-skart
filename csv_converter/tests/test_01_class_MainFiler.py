@@ -1,7 +1,6 @@
 """Tests for the ``MainFiler`` filesystem orchestration behavior."""
 
-import shutil
-import pytest
+import shutil, pytest
 from pathlib import Path
 from csv_converter.core import MainFiler
 

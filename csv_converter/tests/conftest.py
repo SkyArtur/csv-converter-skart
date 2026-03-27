@@ -1,11 +1,10 @@
 """Shared pytest fixtures for filesystem-based converter tests."""
 
-import tempfile, shutil, pytest, pandas as pd
+import tempfile, shutil, pytest
 from typing import Generator
 from pathlib import Path
 
 from csv_converter.core import MainFiler
-from csv_converter.functions import detect_encoding
 
 
 @pytest.fixture

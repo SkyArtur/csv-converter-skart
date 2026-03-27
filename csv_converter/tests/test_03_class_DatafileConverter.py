@@ -1,7 +1,6 @@
 """Tests for the ``DatafileConverter`` conversion workflow."""
-import zipfile
 
-import pytest, logging, shutil, click
+import pytest, logging, shutil, click, zipfile
 from click.testing import CliRunner
 from pathlib import Path
 from csv_converter.core import DatafileConverter

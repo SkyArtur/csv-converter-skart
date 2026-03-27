@@ -1,6 +1,6 @@
 """Tests for the public ``csv_converter()`` helper."""
 
-import logging, shutil, pytest, zipfile
+import logging, shutil
 from csv_converter import csv_converter
 from pathlib import Path
 
