@@ -63,8 +63,8 @@ from pathlib import Path
 
 from csv_converter import csv_converter
 
-input_file = Path("csv_converter/tests/fixtures/input_files/original.xlsx")
-output_file = Path("csv_converter/tests/artifacts/original.csv")
+input_file = Path("./meu_arquivo.xlsx")
+output_file = Path("./destino.csv")
 
 generated_file = csv_converter(input_file, output_file)
 dataframe = pd.read_csv(generated_file)
