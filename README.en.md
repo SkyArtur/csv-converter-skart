@@ -63,8 +63,13 @@ from pathlib import Path
 
 from csv_converter import csv_converter
 
+<<<<<<< Updated upstream
 input_file = Path("./meu_arquivo.xlsx")
 output_file = Path("./saida.csv")
+=======
+input_file = Path("csv_converter/tests/fixtures/input_files/original.xlsx")
+output_file = Path("csv_converter/tests/artifacts/original.csv")
+>>>>>>> Stashed changes
 
 generated_file = csv_converter(input_file, output_file)
 dataframe = pd.read_csv(generated_file)
@@ -80,4 +85,8 @@ print(dataframe.info())
 
 ## License
 
+<<<<<<< Updated upstream
 MIT License - Copyright (c) 2026 [Artur dos Santos Shon](https://github.com/SkyArtur)
+=======
+MIT License - Copyright (c) 2026 [Artur dos Santos Shon](https://github.com/SkyArtur)
+>>>>>>> Stashed changes

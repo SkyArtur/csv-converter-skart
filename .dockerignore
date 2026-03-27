@@ -32,6 +32,7 @@ htmlcov/
 # Generated data files
 *.csv
 *.xlsx
+<<<<<<< Updated upstream
 !csv_converter/tests/fixtures/
 !csv_converter/tests/fixtures/input_files/
 !csv_converter/tests/fixtures/input_files/*.xlsx
@@ -47,3 +48,20 @@ csv_converter/tests/artifacts/debug/**
 sandbox.py
 guia.md
 teste.csv
+=======
+
+# Test fixtures must be available in the build context
+!csv_converter/tests/fixtures/
+!csv_converter/tests/fixtures/**
+
+# Keep only the debug/temp directory structure from test artifacts
+csv_converter/tests/artifacts/**
+!csv_converter/tests/artifacts/
+!csv_converter/tests/artifacts/debug/
+!csv_converter/tests/artifacts/debug/temp/
+
+# Local files
+exemplos.py
+guia.md
+sandbox.py
+>>>>>>> Stashed changes

@@ -9,6 +9,18 @@ build/
 dist/
 *.egg-info/
 *.egg
+<<<<<<< Updated upstream
+=======
+MANIFEST
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+>>>>>>> Stashed changes
 
 # Unit test / coverage reports
 .pytest_cache/
@@ -17,6 +29,29 @@ dist/
 htmlcov/
 .tox/
 .nox/
+<<<<<<< Updated upstream
+=======
+.pytest_cache/
+.hypothesis/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py.cover
+cover/
+
+# pyenv
+# .python-version
+
+# poetry
+# poetry.lock
+# poetry.toml
+
+# PEP 582
+__pypackages__/
+>>>>>>> Stashed changes
 
 # Environments
 .env
@@ -29,26 +64,39 @@ ENV/
 # PyCharm
 .idea/
 
+<<<<<<< Updated upstream
 # My files
 .pypirc
 sandbox.py
 guia.md
+=======
+# Local files
+/exemplo.md
+/exemplos.py
+/guia.md
+/sandbox.py
+**/.pypirc
+>>>>>>> Stashed changes
 
 # Generated data files
 *.csv
 *.xlsx
 
-# Exceções — fixtures de teste devem ser versionados
+# Test fixtures must always be versioned
 !csv_converter/tests/fixtures/
-!csv_converter/tests/fixtures/input_files/
-!csv_converter/tests/fixtures/input_files/*.xlsx
-!csv_converter/tests/fixtures/input_files/*.csv
-!csv_converter/tests/fixtures/expected_files/
-!csv_converter/tests/fixtures/expected_files/*.csv
+!csv_converter/tests/fixtures/**
 
+<<<<<<< Updated upstream
 # Artefatos gerados pelos testes não são versionados
 csv_converter/tests/artifacts/**/*.csv
 csv_converter/tests/artifacts/**/*.xlsx
 csv_converter/tests/artifacts/debug/**
 
+=======
+# Test artifacts are ignored, except the debug/temp directory structure
+csv_converter/tests/artifacts/**
+!csv_converter/tests/artifacts/
+!csv_converter/tests/artifacts/debug/
+!csv_converter/tests/artifacts/debug/temp/
+>>>>>>> Stashed changes
 
