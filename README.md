@@ -5,57 +5,57 @@
 [![CI](https://img.shields.io/github/actions/workflow/status/SkyArtur/csv-converter-skart/ci.yml?branch=main&style=for-the-badge&logo=githubactions&logoColor=white&label=CI)](https://github.com/SkyArtur/csv-converter-skart/actions/workflows/ci.yml)
 [![GitHub Repo](https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/SkyArtur/csv-converter-skart)
 
-Ferramenta de linha de comando para converter e sanitizar arquivos de planilha, com foco em dados inconsistentes e geração de arquivos CSV com suporte a `pandas`.
+Command-line tool for converting and sanitizing spreadsheet files, with a focus on inconsistent data and CSV generation backed by `pandas`.
 
-[English version](./README.en.md)
+[Versão em português](README.pt.md)
 
-## Visão geral
+## Overview
 
-O projeto converte arquivos `.xlsx`, `.xls` e `.csv` para CSV, aplicando etapas de normalização úteis para cenários em que a origem contém problemas de estrutura, conteúdo ou codificação.
+This project converts `.xlsx`, `.xls`, and `.csv` files to CSV while applying normalization steps that are useful when the source data contains structural, content, or encoding issues.
 
-Principais recursos:
+Key features:
 
-- Conversão de planilhas para CSV.
-- Normalização de arquivos CSV com saída em UTF-8.
-- Sanitização de XML interno de arquivos XLSX.
-- Detecção de codificação para arquivos CSV.
-- Interface de linha de comando e uso programático via módulo Python.
+- Convert spreadsheet files to CSV.
+- Normalize CSV files and rewrite them as UTF-8.
+- Sanitize internal XML content from XLSX files.
+- Detect text encoding for CSV inputs.
+- Use the project through both a CLI and a Python module.
 
-## Requisitos
+## Requirements
 
 - Python `>= 3.10`
 
-## Instalação
+## Installation
 
 ```shell
 pip install csv-converter-skart
 ```
 
-## Uso
+## Usage
 
-### Linha de comando
+### Command line
 
-Se apenas o arquivo de entrada for informado, o diretório `File{NomeDoArquivo}Normalized` será criado no diretório atual. O CSV gerado manterá o nome base do arquivo original.
-
-```shell
-csv-converter ./meus_arquivos/arquivo.xlsx
-```
-
-Para definir explicitamente o arquivo de saída, use `-o` ou `--output`.
+If only the input file is provided, the `File{OriginalFileName}Normalized` directory is created in the current working directory. The generated CSV keeps the original base filename.
 
 ```shell
-csv-converter ./meus_arquivos/arquivo.xlsx --output ./csv/arquivo_normalizado.csv
+csv-converter ./my_files/file.xlsx
 ```
 
-Para exibir a ajuda da CLI:
+To define the output file explicitly, use `-o` or `--output`.
+
+```shell
+csv-converter ./my_files/file.xlsx --output ./csv/normalized_file.csv
+```
+
+To display the CLI help:
 
 ```shell
 csv-converter --help
 ```
 
-### Uso como módulo
+### Module usage
 
-O pacote também expõe a função `csv_converter`, que pode ser importada diretamente.
+The package also exposes the `csv_converter` function for direct import.
 
 ```python
 import pandas as pd
@@ -72,12 +72,12 @@ dataframe = pd.read_csv(generated_file)
 print(dataframe.info())
 ```
 
-## Comportamento de saída
+## Output behavior
 
-- Entradas `.xlsx` e `.xls` são processadas e exportadas para CSV.
-- Entradas `.csv` são lidas com detecção de codificação e regravadas em UTF-8.
-- Quando o caminho de saída não é informado, ele é criado automaticamente.
+- `.xlsx` and `.xls` inputs are processed and exported to CSV.
+- `.csv` inputs are read with encoding detection and rewritten as UTF-8.
+- When no output path is provided, one is created automatically.
 
-## Licença
+## License
 
 MIT License - Copyright (c) 2026 [Artur dos Santos Shon](https://github.com/SkyArtur)
