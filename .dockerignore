@@ -1,60 +1,49 @@
-# Python cache
+# Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
+.pytest_cache/
 *$py.class
 
-# Build and packaging artifacts
+# Distribution / packaging
 build/
 dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-share/python-wheels/
 *.egg-info/
 *.egg
-MANIFEST
 
-# Virtual environments and local config
+# Environments
 .env
 .envrc
-.venv
-env/
-venv/
-ENV/
-env.bak/
-venv.bak/
-
-# Test and coverage artifacts
-htmlcov/
-.tox/
-.nox/
 .pytest_cache/
-.hypothesis/
-.coverage
-.coverage.*
-.cache
-nosetests.xml
-coverage.xml
-*.cover
-*.py.cover
-cover/
+.venv/
+venv/
+env/
+ENV/
 
 # IDE files
 .idea/
 
+# Test and coverage artifacts
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+
 # Generated data files
 *.csv
 *.xlsx
-!csv_converter/tests/files/*.csv
-!csv_converter/tests/files/*.xlsx
-!csv_converter/tests/sandbox/*.csv
-!csv_converter/tests/sandbox/*.xlsx
+!csv_converter/tests/fixtures/
+!csv_converter/tests/fixtures/input_files/
+!csv_converter/tests/fixtures/input_files/*.xlsx
+!csv_converter/tests/fixtures/input_files/*.csv
+!csv_converter/tests/fixtures/expected_files/
+!csv_converter/tests/fixtures/expected_files/*.csv
+csv_converter/tests/artifacts/**/*.csv
+csv_converter/tests/artifacts/**/*.xlsx
+csv_converter/tests/artifacts/debug/**
 
-# Local files
-exemplos.py
+# Local-only files
+.pypirc
+sandbox.py
+guia.md
+teste.csv
